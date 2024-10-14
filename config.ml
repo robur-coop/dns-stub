@@ -1,4 +1,4 @@
-(* mirage >= 4.7.0 & < 4.8.0 *)
+(* mirage >= 4.8.0 & < 4.9.0 *)
 
 (* Copyright Robur, 2020 *)
 
@@ -17,13 +17,8 @@ let dnsvizor =
     package "dns-server";
     package ~min:"4.3.1" "mirage-runtime";
   ]
-  and runtime_args = [
-    runtime_arg ~pos:__POS__ "Unikernel.K.dns_upstream";
-    runtime_arg ~pos:__POS__ "Unikernel.K.dns_cache";
-  ]
   in
   main
-    ~runtime_args
     ~packages
     "Unikernel.Main"
     (random @-> pclock @-> mclock @-> time @-> stackv4v6 @-> job)
