@@ -11,13 +11,11 @@ end
 
 open Lwt.Infix
 
-module Main (R : Mirage_crypto_rng_mirage.S) (P : Mirage_clock.PCLOCK)
-    (M : Mirage_clock.MCLOCK)
-    (Time : Mirage_time.S) (S : Tcpip.Stack.V4V6) = struct
+module Main (S : Tcpip.Stack.V4V6) = struct
 
-  module Stub = Dns_stub_mirage.Make(R)(Time)(P)(M)(S)
+  module Stub = Dns_stub_mirage.Make(S)
 
-  let start () () () () s =
+  let start s =
     let nameservers =
       Option.map (fun ns -> [ ns ]) (K.dns_upstream ())
     and primary_t =
