@@ -1,4 +1,4 @@
-(* mirage >= 4.8.0 & < 4.9.0 *)
+(* mirage >= 4.9.0 & < 4.10.0 *)
 
 (* Copyright Robur, 2020 *)
 
@@ -18,13 +18,7 @@ let dnsvizor =
     package ~min:"4.3.1" "mirage-runtime";
   ]
   in
-  main
-    ~packages
-    "Unikernel.Main"
-    (random @-> pclock @-> mclock @-> time @-> stackv4v6 @-> job)
+  main ~packages "Unikernel.Main" (stackv4v6 @-> job)
 
 let () =
-  register "dns-stub" [
-    dnsvizor $ default_random $ default_posix_clock
-    $ default_monotonic_clock $ default_time
-    $ generic_stackv4v6 default_network ]
+  register "dns-stub" [ dnsvizor $ generic_stackv4v6 default_network ]
