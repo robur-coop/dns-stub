@@ -1,5 +1,4 @@
-(* mirage >= 4.9.0 & < 4.10.0 *)
-
+(* mirage >= 4.9.0 & < 4.11.0 *)
 (* Copyright Robur, 2020 *)
 
 open Mirage
